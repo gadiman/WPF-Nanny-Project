@@ -1,0 +1,40 @@
+﻿<Window x:Class="UI.ChildWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Title="ChildWindow" Height="500" Width="400">
+    <Window.Background>
+
+        <ImageBrush ImageSource="images/nursery-newport-baby-room.jpg"/>
+
+    </Window.Background>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.RowSpan ="100"  BorderBrush="Black" Background="{x:Null}" BorderThickness="10" />
+        <TextBlock x:Name="textBlock" Style="{StaticResource MyTextBlockStyle}" Text="Child" Grid.Row="0" Margin="144,10,144,0" />
+        <syncfusion:ButtonAdv  Style="{DynamicResource MyBottonStyle}"  Label="Add"  Grid.Row="1"  SmallIcon="images/add.png" Click="AddChild" >
+            <syncfusion:SfBusyIndicator Height="100" Width="100"/>
+        </syncfusion:ButtonAdv>
+        <syncfusion:ButtonAdv  Style="{DynamicResource MyBottonStyle}" Label="Update"  Grid.Row="2"  SmallIcon="images/update.png" Click="UpdateChild">
+            <syncfusion:SfBusyIndicator Content="SfBusyIndicator" Height="100" Width="100"/>
+        </syncfusion:ButtonAdv>
+        <syncfusion:ButtonAdv Style="{DynamicResource MyBottonStyle}" Label="Remove"  Grid.Row="3"  SmallIcon="images/remove.png" Click="RemoveChild">
+            <syncfusion:SfBusyIndicator Content="SfBusyIndicator" Height="100" Width="100"/>
+        </syncfusion:ButtonAdv>
+        <syncfusion:ButtonAdv  Style="{DynamicResource MyBottonStyle}" Label="Show"  Grid.Row="4"  SmallIcon="images/show.png" Click="ShowChild">
+            <syncfusion:SfBusyIndicator Content="SfBusyIndicator" Height="100" Width="100"/>
+        </syncfusion:ButtonAdv>
+    </Grid>
+</Window>

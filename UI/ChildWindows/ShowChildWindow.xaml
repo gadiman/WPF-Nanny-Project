@@ -1,0 +1,114 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:BE="clr-namespace:BE;assembly=BE"
+    xmlns:Custom="http://schemas.microsoft.com/netfx/2009/xaml/presentation" x:Class="UI.ShowChildWindow"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="ShowChildWindow" Height="393" Width="669">
+    <Window.Resources>
+        <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander x:Name="exp" IsExpanded="True"
+                          Background="White"
+                          Foreground="Black">
+                            <Expander.Header>
+                                <TextBlock Text="{Binding Path=Name}"/>
+                            </Expander.Header>
+                            <ItemsPresenter />
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Window.Background>
+        <ImageBrush ImageSource="/UI;component/images/Stitched-Wool-White-Seamless-Textures-For-Website-Background.jpg"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="26*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="76"/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="1" Grid.Column="1"  >
+            <Button x:Name="button2" Content="Show childs groping by mother"  VerticalAlignment="Center" Width="auto" Click="groping_childs_click" />
+            <Button x:Name="button" Content="Show the  childrens without nannys"  VerticalAlignment="Top" Width="auto" Click="show_chids_without_nannys_click"/>
+            <Button x:Name="button1" Content="show all " VerticalAlignment="Bottom" Width="auto" Click="show_all_childs"/>
+        </Grid>
+        <TextBlock x:Name="textBlock" Style="{StaticResource MyTextBlockStyle}" Width="290" Text="Choose the condition for view" Grid.ColumnSpan="2" Margin="137,7,136,7" Height="26" />
+        <Grid  Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+
+            <Custom:DataGrid x:Name="dgData" CanUserAddRows="False" Grid.Column="1" AutoGenerateColumns="False"
+                         CanUserDeleteRows="False" ItemsSource="{Binding}" SelectionChanged="dgData_selection_cehanged">
+                <Custom:DataGrid.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
+                        <GroupStyle.Panel>
+                            <ItemsPanelTemplate>
+                                <Custom:DataGridRowsPresenter />
+                            </ItemsPanelTemplate>
+                        </GroupStyle.Panel>
+                    </GroupStyle >
+                </Custom:DataGrid.GroupStyle>
+                <Custom:DataGrid.Columns>
+                    <Custom:DataGridTextColumn Header=" First Name" Binding="{Binding First_Name}"/>
+                    <Custom:DataGridTextColumn Header=" ID" Binding="{Binding ID}"/>
+                    <Custom:DataGridTextColumn Header="  ID Mother " Binding="{Binding  Id_Mom }"/>
+                    <Custom:DataGridTextColumn Header=" Dater " Binding="{Binding Date }"/>
+                    <Custom:DataGridTextColumn Header=" With Special Needs" Binding="{Binding s}"/>
+                    <Custom:DataGridTextColumn Header=" gender " Binding="{Binding gender }"/>
+                </Custom:DataGrid.Columns>
+            </Custom:DataGrid>
+            
+            <DataGrid x:Name="dataGrid" Grid.Column="1"  SelectionChanged="selection_change_dataGrid"/>
+            <Grid x:Name="grid1"  VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" Height="229" Width="266">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Date:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="first_NameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding First_Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+                <Label Content="gender:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBlock x:Name="genderComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2"  Text="{Binding gender}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="ID:" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock  x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+                <Label Content="Id Mom:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBlock x:Name="id_MomTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Id_Mom, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Special Needs ? :" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                <TextBlock x:Name="sComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding s}" VerticalAlignment="Center" Width="120" />
+                <Label Content="Special Needs:" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                <TextBlock x:Name="special_NeedsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Special_Needs, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>

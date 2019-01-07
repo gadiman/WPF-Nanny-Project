@@ -1,0 +1,80 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI.UpdateContractWindow"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="UpdateContractWindow" Height="600" Width="341">
+    <Window.Background>
+        <ImageBrush ImageSource="/UI;component/images/Stitched-Wool-White-Seamless-Textures-For-Website-Background.jpg"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="244*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="95*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="UpdateButton" Content="Update Contract" HorizontalAlignment="Stretch" Margin="10" Grid.Row="4" VerticalAlignment="Stretch" Width="auto"  Click="UpdateContractClick">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=comboBox, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <ComboBox x:Name="comboBox"  Margin="176,10,46,10" Grid.Row="1"  SelectionChanged="comboBox_SelectionChanged"  VerticalAlignment="Center" Height="20"/>
+        <Label x:Name="label" Style="{StaticResource MyTextBlockLabel}"  Content="Select Count Code:" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="31" Width="155"/>
+        <TextBlock x:Name="textBlock" Style="{StaticResource MyTextBlockStyle}" Width="181" Text="Update Contract" Height="26" Margin="70,2,84,2"  />
+        <Grid x:Name="grid1"  VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" Grid.Row="2" Height="323" Width="249"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Child ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="child_IDComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,4" Grid.Row="0" Text="{Binding Child_ID , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120" IsEnabled="False"/>
+            <Label Content="Nanny ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="nanny_IDTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1"  VerticalAlignment="Center" Text="{Binding Nanny_ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" Width="120"/>
+            <Label Content="Contarct Signed:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <CheckBox x:Name="contarct_SignedCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Contarct_Signed, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Content="Date Of Begining:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <DatePicker x:Name="date_Of_BeginingDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding Date_Of_Begining, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Date Of Ending:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <DatePicker x:Name="date_Of_EndingDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding Date_Of_Ending, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Is Pay Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <CheckBox x:Name="is_PayPer_HourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" IsEnabled="False" Checked="is_pay"/>
+            <Label Content="Pay For Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBlock x:Name="pay_For_HourTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Pay_For_Hour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Pay for Month:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBlock x:Name="pay_for_MonthTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding Pay_for_Month, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Was Meeting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+            <CheckBox x:Name="was_MeetingCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Was_Meeting, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+        </Grid>
+        <DockPanel  LastChildFill="True" Grid.Row="3" Height="auto" Width="auto">
+            <Expander x:Name="expander"  Header="Choose  Contract from a list"  DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="auto" Width="auto" FontWeight="Bold"  >
+                <DataGrid x:Name="datalist" CanUserAddRows="False"  SelectionChanged="datalist_SelectionChanged"    HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="auto"  />
+            </Expander>
+
+        </DockPanel>
+    </Grid>
+</Window>
